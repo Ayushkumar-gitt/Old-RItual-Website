@@ -1,65 +1,28 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import SectionNumber from '../common/SectionNumber';
 import { PLACEHOLDER_IMAGES } from '../../utils/constants';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
 
 const ImageGallery = () => {
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const title = titleRef.current;
-
-    // Title reveal animation
-    gsap.from(title, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 70%',
-        toggleActions: 'play none none reverse',
-      },
-    });
-
-    // Background color transition
-    gsap.to(section, {
-      backgroundColor: '#000000',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: 1,
-      },
-    });
-  }, []);
-
   return (
     <section 
       id="gallery" 
-      ref={sectionRef}
-      className="fullpage-section relative bg-black flex items-center justify-center py-20"
+      className="relative bg-zinc-900 py-24"
     >
       <SectionNumber number={2} />
 
-      <div className="w-full px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
-          ref={titleRef}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
           <h2 className="text-heading text-white mb-4">Gallery</h2>
@@ -67,30 +30,19 @@ const ImageGallery = () => {
         </motion.div>
 
         <Swiper
-          modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
-          effect="coverflow"
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView="auto"
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={20}
+          slidesPerView={1}
           navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 4000, disableOnInteraction: false }}
           breakpoints={{
             640: { 
               slidesPerView: 2,
-              effect: 'slide',
-              spaceBetween: 30 
+              spaceBetween: 24 
             },
             1024: { 
               slidesPerView: 3,
-              effect: 'slide',
               spaceBetween: 30 
             },
           }}
@@ -99,14 +51,15 @@ const ImageGallery = () => {
           {PLACEHOLDER_IMAGES.gallery.map((image, index) => (
             <SwiperSlide key={index}>
               <motion.div
-                className="aspect-[4/5] overflow-hidden rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.4 }}
+                className="aspect-[4/5] overflow-hidden rounded-lg bg-zinc-800"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
                 <img
                   src={image}
                   alt={`Gallery ${index + 1}`}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </motion.div>
             </SwiperSlide>
@@ -114,15 +67,10 @@ const ImageGallery = () => {
         </Swiper>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .gallery-swiper {
           width: 100%;
-          padding-bottom: 60px;
-        }
-        
-        .gallery-swiper .swiper-slide {
-          width: 80%;
-          max-width: 400px;
+          padding-bottom: 50px;
         }
         
         .gallery-swiper .swiper-pagination-bullet {

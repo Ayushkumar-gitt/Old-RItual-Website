@@ -22,65 +22,74 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+/* Custom scrollbar - hide on mobile */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #666;
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #4a4a4a;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #666;
-}
-
-/* Typography utilities */
+/* Typography utilities - Mobile optimized */
 .text-display {
-  font-size: clamp(3rem, 8vw, 8rem);
+  font-size: clamp(2.5rem, 8vw, 8rem);
   line-height: 0.95;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 .text-heading {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.75rem, 5vw, 4rem);
   line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
 .text-subheading {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.25rem, 3vw, 2.5rem);
   line-height: 1.2;
   font-weight: 600;
 }
 
 .text-body-large {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   line-height: 1.6;
   font-weight: 400;
 }
 
 /* Section number styling */
 .section-number {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.875rem, 2vw, 1.5rem);
   font-weight: 300;
   letter-spacing: 0.1em;
   opacity: 0.6;
 }
 
-/* Full-page section */
+/* Full-page section - Mobile optimized */
 .fullpage-section {
   min-height: 100vh;
   width: 100%;
   position: relative;
   overflow: hidden;
+}
+
+/* Mobile: reduce padding */
+@media (max-width: 768px) {
+  .fullpage-section {
+    min-height: 100svh; /* Use small viewport height on mobile */
+  }
 }
 
 /* Image overlay effects */
@@ -104,26 +113,28 @@ html {
   background-clip: text;
 }
 
-/* Button hover effect */
+/* Button hover effect - Disable on touch devices */
 .btn-hover {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.btn-hover::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  transition: left 0.3s ease;
-}
+@media (hover: hover) {
+  .btn-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+  }
 
-.btn-hover:hover::before {
-  left: 100%;
+  .btn-hover:hover::before {
+    left: 100%;
+  }
 }
 
 /* Glass morphism effect */
@@ -191,6 +202,25 @@ html {
 
 .delay-500 {
   animation-delay: 0.5s;
+}
+
+/* Touch-friendly tap targets */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Prevent text selection on mobile */
+@media (max-width: 768px) {
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

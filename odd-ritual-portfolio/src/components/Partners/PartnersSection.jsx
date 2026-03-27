@@ -6,7 +6,7 @@ import { fadeInUp, staggerContainer, staggerItem } from '../../utils/animations'
 
 const PartnersSection = () => {
   return (
-    <section id="partners" className="fullpage-section relative bg-zinc-900 flex items-center justify-center py-20">
+    <section id="partners" className="min-h-screen relative bg-zinc-900 flex items-center justify-center py-20">
       <SectionNumber number={4} />
 
       <div className="max-w-7xl px-6 md:px-12 w-full">

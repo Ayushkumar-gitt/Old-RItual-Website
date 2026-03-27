@@ -45,7 +45,7 @@ const AboutSection = () => {
     <section 
       id="about" 
       ref={sectionRef}
-      className="fullpage-section relative bg-zinc-900 flex items-center justify-center"
+      className="min-h-screen relative bg-zinc-900 flex items-center justify-center py-20"
       style={{ scale: 0.95 }}
     >
       <SectionNumber number={1} />
@@ -71,18 +71,18 @@ const AboutSection = () => {
           />
 
           <motion.div 
-            className="grid md:grid-cols-2 gap-8 mt-12"
+            className="grid md:grid-cols-2 gap-6 md:gap-8 mt-12"
             variants={fadeInUp}
           >
-            <div className="about-card space-y-4 p-8 bg-zinc-800/50 rounded-xl backdrop-blur-sm border border-white/10">
-              <h3 className="text-subheading text-white">Our Vision</h3>
-              <p className="text-white/70">
+            <div className="about-card space-y-3 md:space-y-4 p-6 md:p-8 bg-zinc-800/50 rounded-xl backdrop-blur-sm border border-white/10">
+              <h3 className="text-xl md:text-2xl font-semibold text-white">Our Vision</h3>
+              <p className="text-sm md:text-base text-white/70">
                 Creating a modern expression of golf culture that resonates with today's generation while honoring the game's rich heritage.
               </p>
             </div>
-            <div className="about-card space-y-4 p-8 bg-zinc-800/50 rounded-xl backdrop-blur-sm border border-white/10">
-              <h3 className="text-subheading text-white">Our Mission</h3>
-              <p className="text-white/70">
+            <div className="about-card space-y-3 md:space-y-4 p-6 md:p-8 bg-zinc-800/50 rounded-xl backdrop-blur-sm border border-white/10">
+              <h3 className="text-xl md:text-2xl font-semibold text-white">Our Mission</h3>
+              <p className="text-sm md:text-base text-white/70">
                 To bridge the gap between tradition and innovation, bringing style and authenticity to every aspect of the game.
               </p>
             </div>

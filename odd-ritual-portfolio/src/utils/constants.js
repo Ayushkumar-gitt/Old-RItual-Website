@@ -32,16 +32,18 @@ export const BREAKPOINTS = {
   '2xl': 1536,
 };
 
-// Placeholder images (to be replaced with actual images)
+// Placeholder images - Using reliable Picsum photos
 export const PLACEHOLDER_IMAGES = {
-  hero: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1920&q=80',
-  about: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1920&q=80',
+  hero: 'https://picsum.photos/id/1043/1920/1080',
+  about: 'https://picsum.photos/id/1047/1920/1080',
   gallery: [
-    'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&q=80',
-    'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&q=80',
-    'https://images.unsplash.com/photo-1593111774240-d529f12a3e64?w=800&q=80',
-    'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&q=80',
-    'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&q=80',
+    'https://picsum.photos/id/1015/600/800',
+    'https://picsum.photos/id/1018/600/800',
+    'https://picsum.photos/id/1019/600/800',
+    'https://picsum.photos/id/1022/600/800',
+    'https://picsum.photos/id/1025/600/800',
+    'https://picsum.photos/id/1029/600/800',
+    'https://picsum.photos/id/1035/600/800',
   ],
 };
 

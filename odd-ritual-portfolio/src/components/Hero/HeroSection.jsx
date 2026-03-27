@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import ScrollIndicator from '../common/ScrollIndicator';
+import LazyImage from '../common/LazyImage';
 import { fadeInUp } from '../../utils/animations';
 import { PLACEHOLDER_IMAGES } from '../../utils/constants';
 
@@ -12,6 +13,8 @@ const HeroSection = () => {
   useEffect(() => {
     const hero = heroRef.current;
     const image = imageRef.current;
+
+    if (!image) return;
 
     // Parallax effect on hero image
     gsap.to(image, {
@@ -27,36 +30,40 @@ const HeroSection = () => {
 
     // Title animation
     const title = hero.querySelector('h1');
-    gsap.from(title, {
-      y: 100,
-      opacity: 0,
-      duration: 1.2,
-      ease: 'power3.out',
-      delay: 0.5,
-    });
+    if (title) {
+      gsap.from(title, {
+        y: 100,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power3.out',
+        delay: 0.5,
+      });
+    }
 
     // Subtitle animation
     const subtitle = hero.querySelector('p');
-    gsap.from(subtitle, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      delay: 0.8,
-    });
+    if (subtitle) {
+      gsap.from(subtitle, {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        delay: 0.8,
+      });
+    }
   }, []);
 
   return (
     <section id="home" ref={heroRef} className="fullpage-section relative flex items-center justify-center">
       {/* Background Image with Parallax */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
-          ref={imageRef}
-          src={PLACEHOLDER_IMAGES.hero}
-          alt="Hero"
-          className="w-full h-[120%] object-cover"
-          style={{ transform: 'translateY(-10%)' }}
-        />
+        <div ref={imageRef} className="w-full h-[120%]" style={{ transform: 'translateY(-10%)' }}>
+          <LazyImage
+            src={PLACEHOLDER_IMAGES.hero}
+            alt="Hero"
+            className="w-full h-full"
+          />
+        </div>
         <div className="image-overlay" />
       </div>
 
